@@ -16,10 +16,8 @@ Basically it has three types of result formats which are explained below –
 3)	JSON
 
 #Install TestRunner -
-You can install this runner into you system by using its setup.py file. There are three ways to do so –
-1)	By Easy Install ( easy_install TestRunner)
-2)	By PIP Install ( pip install TestRunner )
-3)	By download the zip/tar file and then extract it and then open command line ( python setup.py install)
+You can install this runner into you system by using its setup.py file.you can do this as -
+-- By download the zip file and then extract it and then open command line ( python setup.py install)
 
 #How to use?
 
@@ -70,7 +68,7 @@ There is two unittest classes as TestClassOne and TestClassTwo and then I create
             itersuite = unittest.TestLoader().loadTestsFromTestCase(test_class)
             suites_list.append(itersuite)
         big_suite = unittest.TestSuite(suites_list)
-        result = TestRunner().run(test = big_suite , filepath = dirName , filename = 'result' , result_type = ResultType.ALL ,converter = r'Full Path of NunitHTMLReportGenerator.exe file')
+        result = TestRunner().run(test = big_suite , filepath = dirName , filename = 'result' , result_type = ResultType.ALL ,converter = r'Full Path of NunitHTMLReportGenerator.exe file' , app_version = '0.0.4')
 
 #Explain Above Code
 
@@ -84,5 +82,6 @@ Method 'run' is basically use to run the test suite or any test module . It has 
 
 'converter' : Optional argument. Default Value is None. If you have requested for HTML result file then you must provide with this converter filepath to generate the HTML result. In case you say ResultType.HTML and do not provide the converter filepath then code will raise an error.
 
+app_version : It is aslo an Optional argument. Default Value is '0.0.0' . It will showing you on your result files.
 
 In case any queries you can contact me at my email - harshittrivedi78@gmail.com
