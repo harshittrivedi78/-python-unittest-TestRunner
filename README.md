@@ -1,4 +1,4 @@
-# -python-unittest-TestRunner
+# python-unittest-TestRunner
 
 #Introduction
 TestRunner is a python module which is basically a plug-in for python Unittest framework. It can provide you the result format as you want to have. Basically it has three types of result format which are - Xml, Json and much demanded Html. In case you want to get the output in HTML format then you will need to use NunitHTMLReportGenerator.exe file. 
