@@ -1,7 +1,9 @@
-
+from cogent.tests import TestCase
+import cogent
 import unittest
 
-class TestClassOne(unittest.TestCase):
+
+class TestClassOne(TestCase):
     def test1(self):
         # Pass Test Case
         expected_number = 90
@@ -15,15 +17,17 @@ class TestClassOne(unittest.TestCase):
         actual = False
         print('Test output foe test case 2')
         self.assertEqual(expected, actual)
-        
+
     def test3(self):
         # Error Test Case
         print('Test output foe test case 3')
         raise ValueError('flowid not matches')
-        
 
     @unittest.skip('skipped')
     def test4(self):
         # Skip Test Case
         pass
-        
+
+
+if __name__ == "__main__":
+    cogent.main()
