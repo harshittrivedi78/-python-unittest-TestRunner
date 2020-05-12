@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test Report</title>
+</head>
+<script src="/python-unittest-cogent/cogent/static/js/jquery.js"></script>
+<script src="/python-unittest-cogent/cogent/static/js/bootstrap_paginator.js"></script>
+<script src="/python-unittest-cogent/cogent/static/js/qunit.js"></script>
+<script src="/python-unittest-cogent/cogent/static/js/bootstrap.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('[data-toggle="tooltip"]').tooltip({'placement': 'bottom'});
+    });
+
+</script>
+
+<link rel="stylesheet" type="text/css" href="/python-unittest-cogent/cogent/static/css/bootstrap.css" media="all"/>
+
+<body>
+<div class="container-fluid page">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">Summary - <small>Test Report</small>
+                </div>
+                <div class="panel-body">
+                    <div class="col-md-2 col-sm-4 col-xs-6 text-center">
+                        <div class="stat">Total Tests</div>
+                        <div class="val ignore-val">6</div>
+                    </div>
+                    <div class="col-md-2 col-sm-4 col-xs-6 text-center">
+                        <div class="stat">Success</div>
+                        <div class="val text-success">3</div>
+                    </div>
+                    <div class="col-md-2 col-sm-4 col-xs-6 text-center">
+                        <div class="stat">Failures</div>
+                        <div class="val text-danger">1</div>
+                    </div>
+                    <div class="col-md-2 col-sm-4 col-xs-6 text-center">
+                        <div class="stat">Errors</div>
+                        <div class="val text-danger">1</div>
+                    </div>
+                    <div class="col-md-2 col-sm-4 col-xs-6 text-center">
+                        <div class="stat">Inconclusive</div>
+                        <div class="val ">0</div>
+                    </div>
+                    <div class="col-md-2 col-sm-4 col-xs-6 text-center">
+                        <div class="stat">Skipped</div>
+                        <div class="val text-info">1</div>
+                    </div>
+                    <div class="col-md-2 col-sm-4 col-xs-6 text-center">
+                        <div class="stat">Application</div>
+                        <div class="val">Test APP</div>
+                    </div>
+                    <div class="col-md-2 col-sm-4 col-xs-6 text-center">
+                        <div class="stat">App Version</div>
+                        <div class="val">App Version 5.3</div>
+                    </div>
+                    <div class="col-md-2 col-sm-4 col-xs-6 text-center">
+                        <div class="stat">Date</div>
+                        <div class="val">2020-05-13 01:26:32</div>
+                    </div>
+                    <div class="col-md-2 col-sm-4 col-xs-6 text-center">
+                        <div class="stat">Duration</div>
+                        <div class="val">0.000823</div>
+                    </div>
+                    <div class="col-md-2 col-sm-4 col-xs-6 text-center">
+                        <div class="stat">Success Rate</div>
+                        <div class="val">50.0%</div>
+                    </div>
+                    <div class="col-md-2 col-sm-4 col-xs-6 text-center">
+                        <div class="stat">Platform</div>
+                        <div class="val">Linux/Ubuntu 14.04</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    TestClassOne
+                </div>
+                <div class="panel-body">
+                    <div class="text-center" style="font-size: 1.5em;">
+                        <a href="#modal-TestClassOne-1" role="button" data-toggle="modal"
+                           class="text-success no-underline">
+                            <span class="glyphicon glyphicon-ok-sign"></span>
+                            <span class="test-result">Success</span>
+                        </a>
+                    </div>
+
+                    <div class="visible-print printed-test-result">
+                        <div class="panel panel-success">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    test1
+                                </h4>
+                            </div>
+                            <div class="panel-body">
+                                <div><strong>Result:</strong> success</div>
+                                <div><strong>Message:</strong> Test output foe test case 1
+</div>
+                                <div><strong>Stack Trace:</strong>
+                                    <pre>  </pre>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-success">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    test2
+                                </h4>
+                            </div>
+                            <div class="panel-body">
+                                <div><strong>Result:</strong> success</div>
+                                <div><strong>Message:</strong> Test output foe test case 2
+</div>
+                                <div><strong>Stack Trace:</strong>
+                                    <pre>  </pre>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal fade" id="modal-TestClassOne-1" tabindex="-1" role="dialog"
+                         aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                        &times;
+                                    </button>
+                                    <h4 class="modal-title" id="myModalLabel">TestClassOne - </h4> <small>TestClassOne</small><small
+                                        class="pull-right"></small>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="panel-group no-bottom-margin" id="modal-TestClassOne-1-accordion">
+                                        <div class="panel panel-success">
+                                            <div class="panel-heading">
+                                                <h4 class="panel-title">
+                                                    <a data-toggle="collapse" data-parent="#modal-TestClassOne-1"
+                                                       href="#modal-TestClassOne-1-accordion-1">test1</a>
+                                                </h4>
+                                            </div>
+                                            <div id="modal-TestClassOne-1-accordion-1" class="panel-collapse collapse">
+                                                <div class="panel-body">
+                                                    <div><strong>Result:</strong> success</div>
+                                                    <div><strong>Message:</strong> Test output foe test case 1
+</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="panel panel-success">
+                                            <div class="panel-heading">
+                                                <h4 class="panel-title">
+                                                    <a data-toggle="collapse" data-parent="#modal-TestClassOne-1"
+                                                       href="#modal-TestClassOne-1-accordion-2">test2</a>
+                                                </h4>
+                                            </div>
+                                            <div id="modal-TestClassOne-1-accordion-2" class="panel-collapse collapse">
+                                                <div class="panel-body">
+                                                    <div><strong>Result:</strong> success</div>
+                                                    <div><strong>Message:</strong> Test output foe test case 2
+</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="panel panel-danger">
+                <div class="panel-heading">
+                    TestClassTwo
+                </div>
+                <div class="panel-body">
+                    <div class="text-center" style="font-size: 1.5em;">
+                        <a href="#modal-TestClassTwo-2" role="button" data-toggle="modal"
+                           class="text-danger no-underline">
+                            <span class="glyphicon glyphicon-exclamation-sign"></span>
+                            <span class="test-result">Failed</span>
+                        </a>
+                    </div>
+
+                    <div class="visible-print printed-test-result">
+                        <div class="panel panel-success">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    test1
+                                </h4>
+                            </div>
+                            <div class="panel-body">
+                                <div><strong>Result:</strong> success</div>
+                                <div><strong>Message:</strong> Test output foe test case 1
+</div>
+                                <div><strong>Stack Trace:</strong>
+                                    <pre>  </pre>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-danger">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    test2
+                                </h4>
+                            </div>
+                            <div class="panel-body">
+                                <div><strong>Result:</strong> fail</div>
+                                <div><strong>Message:</strong> Test output foe test case 2
+This test is for testing multiple messages
+</div>
+                                <div><strong>Stack Trace:</strong>
+                                    <pre>  </pre>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-danger">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    test3
+                                </h4>
+                            </div>
+                            <div class="panel-body">
+                                <div><strong>Result:</strong> error</div>
+                                <div><strong>Message:</strong> Test output foe test case 3
+</div>
+                                <div><strong>Stack Trace:</strong>
+                                    <pre>  </pre>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    test4
+                                </h4>
+                            </div>
+                            <div class="panel-body">
+                                <div><strong>Result:</strong> skip</div>
+                                <div><strong>Message:</strong> </div>
+                                <div><strong>Stack Trace:</strong>
+                                    <pre>  </pre>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal fade" id="modal-TestClassTwo-2" tabindex="-1" role="dialog"
+                         aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                        &times;
+                                    </button>
+                                    <h4 class="modal-title" id="myModalLabel">TestClassTwo - </h4> <small>TestClassTwo</small><small
+                                        class="pull-right"></small>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="panel-group no-bottom-margin" id="modal-TestClassTwo-2-accordion">
+                                        <div class="panel panel-success">
+                                            <div class="panel-heading">
+                                                <h4 class="panel-title">
+                                                    <a data-toggle="collapse" data-parent="#modal-TestClassTwo-2"
+                                                       href="#modal-TestClassTwo-2-accordion-1">test1</a>
+                                                </h4>
+                                            </div>
+                                            <div id="modal-TestClassTwo-2-accordion-1" class="panel-collapse collapse">
+                                                <div class="panel-body">
+                                                    <div><strong>Result:</strong> success</div>
+                                                    <div><strong>Message:</strong> Test output foe test case 1
+</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="panel panel-danger">
+                                            <div class="panel-heading">
+                                                <h4 class="panel-title">
+                                                    <a data-toggle="collapse" data-parent="#modal-TestClassTwo-2"
+                                                       href="#modal-TestClassTwo-2-accordion-2">test2</a>
+                                                </h4>
+                                            </div>
+                                            <div id="modal-TestClassTwo-2-accordion-2" class="panel-collapse collapse">
+                                                <div class="panel-body">
+                                                    <div><strong>Result:</strong> fail</div>
+                                                    <div><strong>Message:</strong> Test output foe test case 2
+This test is for testing multiple messages
+</div>
+                                                    <div><strong>Stack Trace:</strong>
+                                                        <pre>Traceback (most recent call last):
+  File example.py, line 36, in test2
+    self.assertEqual(expected, actual)
+AssertionError: True != False
+</pre>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="panel panel-danger">
+                                            <div class="panel-heading">
+                                                <h4 class="panel-title">
+                                                    <a data-toggle="collapse" data-parent="#modal-TestClassTwo-2"
+                                                       href="#modal-TestClassTwo-2-accordion-3">test3</a>
+                                                </h4>
+                                            </div>
+                                            <div id="modal-TestClassTwo-2-accordion-3" class="panel-collapse collapse">
+                                                <div class="panel-body">
+                                                    <div><strong>Result:</strong> error</div>
+                                                    <div><strong>Message:</strong> Test output foe test case 3
+</div>
+                                                    <div><strong>Stack Trace:</strong>
+                                                        <pre>Traceback (most recent call last):
+  File example.py, line 41, in test3
+    raise ValueError('flowid not matches')
+ValueError: flowid not matches
+</pre>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="panel panel-info">
+                                            <div class="panel-heading">
+                                                <h4 class="panel-title">
+                                                    <a data-toggle="collapse" data-parent="#modal-TestClassTwo-2"
+                                                       href="#modal-TestClassTwo-2-accordion-4">test4</a>
+                                                </h4>
+                                            </div>
+                                            <div id="modal-TestClassTwo-2-accordion-4" class="panel-collapse collapse">
+                                                <div class="panel-body">
+                                                    <div><strong>Result:</strong> skip</div>
+                                                    <div><strong>Message:</strong> </div>
+                                                    <div><strong>Skip Reason:</strong> skipped</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

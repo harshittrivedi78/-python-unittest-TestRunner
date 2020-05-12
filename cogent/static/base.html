@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+</head>
+<script src="/python-unittest-cogent/cogent/static/js/jquery.js"></script>
+<script src="/python-unittest-cogent/cogent/static/js/bootstrap_paginator.js"></script>
+<script src="/python-unittest-cogent/cogent/static/js/qunit.js"></script>
+<script src="/python-unittest-cogent/cogent/static/js/bootstrap.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('[data-toggle="tooltip"]').tooltip({'placement': 'bottom'});
+    });
+
+</script>
+
+<link rel="stylesheet" type="text/css" href="/python-unittest-cogent/cogent/static/css/bootstrap.css" media="all"/>
+
+<body>
+<div class="container-fluid page">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">Summary - <small>{{ report.report_attributes.project_name }}</small>
+                </div>
+                <div class="panel-body">
+                    <div class="col-md-2 col-sm-4 col-xs-6 text-center">
+                        <div class="stat">Total Tests</div>
+                        <div class="val ignore-val">{{ report.report_attributes.total }}</div>
+                    </div>
+                    <div class="col-md-2 col-sm-4 col-xs-6 text-center">
+                        <div class="stat">Success</div>
+                        <div class="val text-success">{{ report.report_attributes.success }}</div>
+                    </div>
+                    <div class="col-md-2 col-sm-4 col-xs-6 text-center">
+                        <div class="stat">Failures</div>
+                        <div class="val text-danger">{{ report.report_attributes.fail }}</div>
+                    </div>
+                    <div class="col-md-2 col-sm-4 col-xs-6 text-center">
+                        <div class="stat">Errors</div>
+                        <div class="val text-danger">{{ report.report_attributes.error }}</div>
+                    </div>
+                    <div class="col-md-2 col-sm-4 col-xs-6 text-center">
+                        <div class="stat">Inconclusive</div>
+                        <div class="val ">0</div>
+                    </div>
+                    <div class="col-md-2 col-sm-4 col-xs-6 text-center">
+                        <div class="stat">Skipped</div>
+                        <div class="val text-info">{{ report.report_attributes.skip }}</div>
+                    </div>
+                    <div class="col-md-2 col-sm-4 col-xs-6 text-center">
+                        <div class="stat">Application</div>
+                        <div class="val">{{ report.report_attributes.application_name }}</div>
+                    </div>
+                    <div class="col-md-2 col-sm-4 col-xs-6 text-center">
+                        <div class="stat">App Version</div>
+                        <div class="val">{{ report.report_attributes.app_version }}</div>
+                    </div>
+                    <div class="col-md-2 col-sm-4 col-xs-6 text-center">
+                        <div class="stat">Date</div>
+                        <div class="val">{{ report.report_attributes.start_time }}</div>
+                    </div>
+                    <div class="col-md-2 col-sm-4 col-xs-6 text-center">
+                        <div class="stat">Duration</div>
+                        <div class="val">{{ report.report_attributes.duration }}</div>
+                    </div>
+                    <div class="col-md-2 col-sm-4 col-xs-6 text-center">
+                        <div class="stat">Success Rate</div>
+                        <div class="val">{{ report.report_attributes.success_rate }}</div>
+                    </div>
+                    <div class="col-md-2 col-sm-4 col-xs-6 text-center">
+                        <div class="stat">Platform</div>
+                        <div class="val">{{ report.report_attributes.platform }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% for result in report.report %}
+        <div class="col-md-3">
+            {% if result.result == "success" %}
+            {% set parent_div_class = "panel panel-success" %}
+            {% elif result.result in ["fail", "error"] %}
+            {% set parent_div_class = "panel panel-danger" %}
+            {% else %}
+            {% set parent_div_class = "panel panel-info" %}
+            {% endif %}
+            <div class="{{ parent_div_class }}">
+                <div class="panel-heading">
+                    {{ result.desc }}
+                </div>
+                {% set modal_class = 'modal-' + result.desc + '-' + loop.index|string %}
+                <div class="panel-body">
+                    <div class="text-center" style="font-size: 1.5em;">
+                        {% if result.result in ["fail", "error"] %}
+                        <a href="#{{ modal_class }}" role="button" data-toggle="modal"
+                           class="text-danger no-underline">
+                            <span class="glyphicon glyphicon-exclamation-sign"></span>
+                            <span class="test-result">Failed</span>
+                        </a>
+                        {% else %}
+                        <a href="#{{ modal_class }}" role="button" data-toggle="modal"
+                           class="text-success no-underline">
+                            <span class="glyphicon glyphicon-ok-sign"></span>
+                            <span class="test-result">Success</span>
+                        </a>
+                        {% endif %}
+                    </div>
+                    {% set panel_id = modal_class + '-accordion' %}
+
+                    <div class="visible-print printed-test-result">
+                        {% for case in result.test_cases %}
+                        {% if case.result == "success" %}
+                        {% set div_class = "panel panel-success" %}
+                        {% elif case.result in ["fail", "error"] %}
+                        {% set div_class = "panel panel-danger" %}
+                        {% else %}
+                        {% set div_class = "panel panel-info" %}
+                        {% endif %}
+                        <div class="{{ div_class }}">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    {{ case.desc }}
+                                </h4>
+                            </div>
+                            <div class="panel-body">
+                                <div><strong>Result:</strong> {{ case.result }}</div>
+                                <div><strong>Message:</strong> {{ case.output }}</div>
+                                <div><strong>Stack Trace:</strong>
+                                    <pre> {{ case.traceback }} </pre>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+
+                    <div class="modal fade" id="{{ modal_class }}" tabindex="-1" role="dialog"
+                         aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                        &times;
+                                    </button>
+                                    <h4 class="modal-title" id="myModalLabel">{{ result.desc }} - </h4> <small>{{
+                                    result.desc }}</small><small
+                                        class="pull-right"></small>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="panel-group no-bottom-margin" id="{{ panel_id }}">
+                                        {% for case in result.test_cases %}
+                                        {% set panel_href = panel_id + '-' + loop.index|string %}
+                                        {% if case.result == "success" %}
+                                        {% set div_class = "panel panel-success" %}
+                                        {% elif case.result in ["fail", "error"] %}
+                                        {% set div_class = "panel panel-danger" %}
+                                        {% else %}
+                                        {% set div_class = "panel panel-info" %}
+                                        {% endif %}
+                                        <div class="{{ div_class }}">
+                                            <div class="panel-heading">
+                                                <h4 class="panel-title">
+                                                    <a data-toggle="collapse" data-parent="#{{ modal_class }}"
+                                                       href="#{{ panel_href }}">{{ case.desc }}</a>
+                                                </h4>
+                                            </div>
+                                            <div id="{{ panel_href }}" class="panel-collapse collapse">
+                                                <div class="panel-body">
+                                                    <div><strong>Result:</strong> {{case.result}}</div>
+                                                    <div><strong>Message:</strong> {{case.output}}</div>
+                                                    {% if case.result == "skip" and case.skip_reason %}
+                                                    <div><strong>Skip Reason:</strong> {{case.skip_reason}}</div>
+                                                    {% endif %}
+                                                    {% if case.stack_trace %}
+                                                    <div><strong>Stack Trace:</strong>
+                                                        <pre>{{ case.stack_trace }}</pre>
+                                                    </div>
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+</body>
+</html>

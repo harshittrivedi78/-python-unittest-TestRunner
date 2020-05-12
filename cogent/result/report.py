@@ -1,4 +1,5 @@
 from xml.sax import saxutils
+from cogent.settings import *
 
 
 class TestReport:
@@ -35,8 +36,11 @@ class TestReport:
 
         total = passed + failed + error + skipped
 
+        success_rate = str((passed * 100) / total) + "%"
+
         return dict(start_time=start_datetime, stop_time=stop_datetime, duration=duration, success=passed, fail=failed,
-                    error=error, skip=skipped, total=total)
+                    error=error, skip=skipped, total=total, success_rate=success_rate, project_name="Test Report",
+                    application_name=APPLICATION_NAME, app_version=APP_VERSION, platform=PLATFORM)
 
     @staticmethod
     def get_test_report(result):
@@ -69,15 +73,22 @@ class TestReport:
             else:
                 ue = case.traceback.decode('latin-1') if case.traceback else ""
 
+            if isinstance(case.reason, str):
+                usk = case.reason
+            else:
+                usk = case.reason.decode('latin-1') if case.reason else ""
+
             case_result = dict(
                 case_id=tid,
                 result=case.result,
                 desc=desc,
                 executed=executed,
-                output=saxutils.escape(uo + ue).replace('''"''', '')
+                stack_trace=saxutils.escape(ue).replace('''"''', ''),
+                output=saxutils.escape(uo).replace('''"''', ''),
+                skip_reason=saxutils.escape(usk).replace('''"''', '')
             )
             test_cases.append(case_result)
-        overall_result = error > 0 and 'error' or failed > 0 and 'fail' or 'pass'
+        overall_result = error > 0 and 'error' or failed > 0 and 'fail' or 'success'
         group = dict(
             result=overall_result,
             total=success + error + failed + skipped,
