@@ -1,6 +1,9 @@
 import unittest
 import cogent
 from cogent.tests import TestCase
+from cogent import settings
+
+settings.HTML_TEST_REPORT_FILENAME = "my_test_report.html"
 
 
 class TestClassOne(TestCase):
@@ -47,4 +50,5 @@ class TestClassTwo(TestCase):
 
 
 if __name__ == "__main__":
+    cogent.main.settings = settings
     cogent.main()
