@@ -4,7 +4,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 STATIC_DIR = BASE_DIR + "/cogent/static/"
 
-HTML_REPORT_TITLE = "Test Report"
+PROJECT_NAME = "Test Report"
 APPLICATION_NAME = "Test APP"
 APP_VERSION = "App Version 5.3"
 PLATFORM = "Linux/Ubuntu 14.04"

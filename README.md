@@ -1,19 +1,29 @@
-# python-unittest-TestRunner
+## python-unittest-cogent
+A custom tests runner which gives output in three different formats (xml, json and html).
 
-#Introduction
-TestRunner is a python module which is basically a plug-in for python Unittest framework. It can provide you the result format as you want to have. Basically it has three types of result format which are - Xml, Json and much demanded Html. In case you want to get the output in HTML format then you will need to use NunitHTMLReportGenerator.exe file. 
-I would like to explain the result generation technique of this module in brief. Basically when you execute your test suite or test module with its run method it returns the serialized JSON string and then I convert this JSON into a XML string and write it into a file then I do create a batch file named converter.bat and with the help of NunitHTMLReportGenerator.exe I do convert the XML file into a HTML file.
+### Quickstart
+Installation:
+```shell
+pip install python-unittest-cogent
+```
+Usage: In example.py
+```python
+import cogent
+from cogent.tests import TestCase
 
-#What is NunitHTMLReportGenerator.exe?
-NunitHTMLReportGenerator.exe is a console application designed in C# language under .Net Framework and uses Bootstrap to create the HTML file. It is designed to convert the Nunit generated XML file to a HTML file. Nunit is a tool as well as a framework for .net applications to create the test suites or modules. It is designed for Unit testing. You can create the .dll file and then run this by Nunit tool it will generate an xml file as result. This converter exe is designed to make it more readable in html format.
+class TestClassOne(TestCase):
+    def test1(self):
+        expected_number = 90
+        actual_number = 90
+        print('Test output foe test case 1')
+        self.assertEqual(expected_number, actual_number)
 
-So I create the xml file identical to Nunit’s xml file and then convert this into html file using this exe file.
+if __name__ == "__main__":
+    cogent.main()
+```
 
-#Result Formats - 
-Basically it has three types of result formats which are explained below –
-1)	HTML
-2)	XML
-3)	JSON
+### To change the output format:
+
 
 #Install TestRunner -
 You can install this runner into you system by using its setup.py file.you can do this as -

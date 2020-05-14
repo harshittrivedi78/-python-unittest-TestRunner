@@ -1,8 +1,8 @@
 from xml.sax import saxutils
-from cogent.settings import *
 
 
 class TestReport:
+    settings = None
 
     @staticmethod
     def group_result(result):
@@ -18,7 +18,7 @@ class TestReport:
         return r
 
     @staticmethod
-    def get_attributes(result, start_time, stop_time):
+    def get_attributes(result, start_time, stop_time, settings):
         start_datetime = str(start_time)[:19]
         stop_datetime = str(stop_time)[:19]
         duration = (stop_time - start_time).total_seconds()
@@ -39,8 +39,10 @@ class TestReport:
         success_rate = str((passed * 100) / total) + "%"
 
         return dict(start_time=start_datetime, stop_time=stop_datetime, duration=duration, success=passed, fail=failed,
-                    error=error, skip=skipped, total=total, success_rate=success_rate, project_name="Test Report",
-                    application_name=APPLICATION_NAME, app_version=APP_VERSION, platform=PLATFORM)
+                    error=error, skip=skipped, total=total, success_rate=success_rate,
+                    project_name=settings.PROJECT_NAME,
+                    application_name=settings.APPLICATION_NAME, app_version=settings.APP_VERSION,
+                    platform=settings.PLATFORM)
 
     @staticmethod
     def get_test_report(result):
@@ -125,7 +127,7 @@ class TestReport:
 
     @classmethod
     def generate(cls, result, start_time, stop_time):
-        attributes = cls.get_attributes(result, start_time, stop_time)
+        attributes = cls.get_attributes(result, start_time, stop_time, cls.settings)
         report = cls.get_suite_report(result)
         return dict(
             report=report,

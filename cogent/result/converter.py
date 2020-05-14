@@ -1,35 +1,43 @@
 import json
 from dicttoxml import dicttoxml
 from collections import namedtuple
-from cogent.settings import *
 from jinja2 import Environment, FileSystemLoader
 
 
 class BaseConverter:
+    settings = None
     filename = None
 
     def save_as_file(self, result):
+        assert self.__class__.filename is not None
         if self.filename:
             with open(self.filename, 'w') as file:
                 file.write(result)
 
-    def convert(self, result):
-        if DEFAULT_CONVERTER == "HTML":
+    def _set_filename(self, filename):
+        self.__class__.filename = filename
+
+    def convert(self, result, settings=None):
+        import ipdb;ipdb.set_trace()
+        self.__class__.settings = settings
+        if settings.DEFAULT_CONVERTER == "HTML":
+            self._set_filename(settings.HTML_TEST_REPORT_FILENAME)
             return html_converter.convert(result)
-        elif DEFAULT_CONVERTER == "JSON":
+        elif settings.DEFAULT_CONVERTER == "JSON":
+            self._set_filename(settings.JSON_TEST_REPORT_FILENAME)
             return json_converter.convert(result)
-        elif DEFAULT_CONVERTER == "XML":
+        elif settings.DEFAULT_CONVERTER == "XML":
+            self._set_filename(settings.XML_TEST_REPORT_FILENAME)
             return xml_converter.convert(result)
         else:
             raise ValueError(
-                "Converter: %s is not defined. Possible values are HTML, JSON and XML." % DEFAULT_CONVERTER)
+                "Converter: %s is not defined. Possible values are HTML, JSON and XML." % settings.DEFAULT_CONVERTER)
 
 
 base_converter = BaseConverter()
 
 
 class JsonConverter(BaseConverter):
-    filename = JSON_TEST_REPORT_FILENAME
 
     def serialize(self):
         pass
@@ -50,7 +58,6 @@ json_converter = JsonConverter()
 
 
 class XMLConverter(BaseConverter):
-    filename = XML_TEST_REPORT_FILENAME
 
     def convert(self, result):
         result = dicttoxml(result)
@@ -61,19 +68,20 @@ xml_converter = XMLConverter()
 
 
 class HTMLConverter(BaseConverter):
-    filename = HTML_TEST_REPORT_FILENAME
 
-    def __init__(self):
-        self.jinja_env = Environment(loader=FileSystemLoader(STATIC_DIR),
+    def setup_jinja_env(self):
+        self.jinja_env = Environment(loader=FileSystemLoader(self.settings.STATIC_DIR),
                                      trim_blocks=True, lstrip_blocks=True)
 
     def render_base_html(self, report):
         return self.jinja_env.get_template('base.html').render(
-            title=HTML_REPORT_TITLE,
+            title=self.settings.PROJECT_NAME,
             report=report,
         )
 
     def convert(self, report, save_as_file=True):
+        import ipdb;ipdb.set_trace()
+        self.setup_jinja_env()
         result = self.render_base_html(report)
         self.save_as_file(result)
         return result
