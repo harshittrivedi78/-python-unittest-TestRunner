@@ -18,7 +18,6 @@ class BaseConverter:
         self.__class__.filename = filename
 
     def convert(self, result, settings=None):
-        import ipdb;ipdb.set_trace()
         self.__class__.settings = settings
         if settings.DEFAULT_CONVERTER == "HTML":
             self._set_filename(settings.HTML_TEST_REPORT_FILENAME)
@@ -80,7 +79,6 @@ class HTMLConverter(BaseConverter):
         )
 
     def convert(self, report, save_as_file=True):
-        import ipdb;ipdb.set_trace()
         self.setup_jinja_env()
         result = self.render_base_html(report)
         self.save_as_file(result)
